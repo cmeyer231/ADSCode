@@ -11,13 +11,15 @@ static void NotifyCallback(const AmsAddr* pAddr, const AdsNotificationHeader* pN
 {
     const uint8_t* data = reinterpret_cast<const uint8_t*>(pNotification + 1);
     std::cout << std::setfill('0') <<
-        "NetId: " << pAddr->netId <<
+        "NetId (use this one): " << pAddr->netId <<
         " hUser 0x" << std::hex << hUser <<
-        " sample time: " << std::dec << pNotification->nTimeStamp <<
-        " sample size: " << std::dec << pNotification->cbSampleSize <<
-        " value:";
+        " sample time(ms): " << std::dec << pNotification->nTimeStamp <<
+        " sample size(int): " << std::dec << pNotification->cbSampleSize <<
+        " value(hex):";
     for (size_t i = 0; i < pNotification->cbSampleSize; ++i) {
         std::cout << " 0x" << std::hex << (int)data[i];
+        std::cout << " 0x" << std::hex << (int)data[i];
+
     }
     std::cout << '\n';
 }
